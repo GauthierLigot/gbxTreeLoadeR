@@ -5,10 +5,7 @@
 #' `get_tablelist()` and `get_table()`, returning them in a named list.
 #' Optionally saves the resulting list as an `.RData` file when `save = TRUE`.
 #'
-#' If `con` is missing, a default connection is created via `get_dendropulse()`.
-#'
-#' @param con A live `DBIConnection`. If missing, a connection is created with
-#'   `get_dendropulse()`.
+#' @param con A live `DBIConnection`.
 #' @param save Logical; if `TRUE`, the imported database (a list) is saved
 #'   to an `.RData` file on disk. Default: `FALSE`.
 #' @param dir Character path to an **existing, writable directory** where
@@ -36,11 +33,12 @@
 #'
 #' @seealso [get_tablelist()], [get_table()], [get_dendropulse()]
 #' @export
-get_db<-function(con=NA, save = F, dir){
+get_db<-function(con, save = F, dir){
 
-  if(missing(con)){
-    con<-get_dendropulse()  #get default connection
-  }
+  # gl 23-02-2026 commented the default value as this prevent user disconnecting from the database
+  # if(missing(con)){
+  #   con<-get_dendropulse()  #get default connection
+  # }
 
   tableList <- get_tablelist(con)
   importedDB <- list()
