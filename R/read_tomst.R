@@ -62,8 +62,7 @@ read_tomst <- function(nameFile, dendrometer, ts_start, ts_end){
   }else{
 
     if(any(File$span == 0)){
-      warning(paste("Span contains zero for dendrometer",dendrometer))
-      warning(paste("You should consider removing this reading of ",dendrometer))
+      warning(paste("Span contains zero for dendrometer :",dendrometer, " --- you should consider removing these records."))
     }
 
     File$series<-as.factor(dendrometer)

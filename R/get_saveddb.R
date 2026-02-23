@@ -30,12 +30,12 @@
 get_saveddb<-function(dir){
 
   if (missing(dir) || is.null(dir) || is.na(dir) || !nzchar(dir)) {
-    warning("`dir` was not specified; the database cannot be loaded")
+    stop("`dir` was not specified; the database cannot be loaded")
     return()
   }
 
   if (!dir.exists(dir)) {
-    warning("`dir` does not exist: ", dir, " - the database cannot be loaded")
+    stop("`dir` does not exist: ", dir, " - the database cannot be loaded")
     return()
   }
 
