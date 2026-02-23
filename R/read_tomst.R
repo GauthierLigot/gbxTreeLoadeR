@@ -62,41 +62,8 @@ read_tomst <- function(nameFile, dendrometer, ts_start, ts_end){
   }else{
 
     if(any(File$span == 0)){
-      read_tomst_dendro <- function(nameFile, dendrometer,
-                                    ts_start, ts_end){
-
-        date_format = "%Y.%m.%d %H:%M"
-        timezone = "UTC"
-        File <- read.csv(nameFile, sep = ";",  header=FALSE, skip=0, dec=",", stringsAsFactors=FALSE)
-        print(dendrometer)
-        ts<-File$V2
-        ts2 <- gsub("^(\\d{4}\\.\\d{2}\\.\\d{2})$", "\\1 00:00", ts)
-        File$ts<-as.POSIXct(ts2, format=date_format, tz=timezone) #raw dendrometer timezone (UTC to be confirmed)
-        File$date <- as.Date(File$ts)
-
-        # Keep data of dates we're interested in:
-        File<-File[which(File$ts>=as.POSIXct(ts_start, tz = timezone) & File$ts<=as.POSIXct(ts_end, tz = timezone)),] #date selection
-        File$span<-as.numeric(File$V7)
-        File$value<-File$span-File$span[1] #zeroing variations in diameter
-        File$temp<-as.numeric(File$V4)
-
-
-        if(nrow(File)==0){
-          warning(paste("! No valid data within the surveyed period for dendrometer",dendrometer))
-          return(File)
-
-        }else{
-
-          if(any(File$span == 0)){
-            warning(paste("Span contains zero for dendrometer",dendrometer))
-            warning(paste("You should consider removing this reading of ",dendrometer))
-          }
-
-          File$series<-as.factor(dendrometer)
-          File<-subset(File,select=c(ts,date,span,value,temp,series))
-          return(File)
-        }
-      }
+      warning(paste("Span contains zero for dendrometer",dendrometer))
+      warning(paste("You should consider removing this reading of ",dendrometer))
     }
 
     File$series<-as.factor(dendrometer)
