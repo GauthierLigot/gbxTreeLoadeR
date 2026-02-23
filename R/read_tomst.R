@@ -31,13 +31,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' df <- read_tomst_dendro("data/TMS_xxx.csv", dendrometer = "D1",
+#' df <- read_tomst("data/TMS_xxx.csv", dendrometer = "D1",
 #'                         ts_start = "2023-05-01 00:00",
 #'                         ts_end   = "2023-05-31 23:59")
 #' }
 #'
 #' @export
-read_tomst_dendro <- function(nameFile, dendrometer, ts_start, ts_end) { ... }
 read_tomst <- function(nameFile, dendrometer, ts_start, ts_end){
 
   date_format = "%Y.%m.%d %H:%M"
