@@ -4,11 +4,10 @@
 \alias{get_db}
 \title{Import All Tables from the Database (optionally save to disk)}
 \usage{
-get_db(con = NA, save = F, dir)
+get_db(con, save = F, dir)
 }
 \arguments{
-\item{con}{A live \code{DBIConnection}. If missing, a connection is created with
-\code{get_dendropulse()}.}
+\item{con}{A live \code{DBIConnection}.}
 
 \item{save}{Logical; if \code{TRUE}, the imported database (a list) is saved
 to an \code{.RData} file on disk. Default: \code{FALSE}.}
@@ -26,7 +25,6 @@ Retrieves all relevant tables from a database connection using
 Optionally saves the resulting list as an \code{.RData} file when \code{save = TRUE}.
 }
 \details{
-If \code{con} is missing, a default connection is created via \code{get_dendropulse()}.
 \itemize{
 \item The list of tables is obtained via \code{get_tablelist(con)}.
 \item Each table is fetched with \code{get_table(con, tablename)}.

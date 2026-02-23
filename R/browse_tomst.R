@@ -18,12 +18,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' preread_tomst_dendro("data/TMS_xxx.csv")
+#' browse_tomst("data/TMS_xxx.csv")
 #' }
 #'
 #' @export
-browse_tomst <- function(nameFile) { ... }
-
 browse_tomst <- function(nameFile){
 
   date_format = "%Y.%m.%d %H:%M"
