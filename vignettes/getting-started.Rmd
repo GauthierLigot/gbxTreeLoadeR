@@ -21,12 +21,12 @@ knitr::opts_chunk$set(
 This vignette demonstrates how to:
 
 1. Install the package
-1. Connect to the DendroPulse database using `get_dendropulse()`
-2. Import all tables locally using `get_db()`
-3. Save a snapshot of the database to disk
-4. Reload an existing database snapshot using `get_saveddb()`
-5. Combine several tables into a single flat dataset
-6. Build a daily summary and visualize tree growth patterns
+2. Connect to the DendroPulse database using `get_dendropulse()`
+3. Import all tables locally using `get_db()`
+4. Save a snapshot of the database to disk
+5. Reload an existing database snapshot using `get_saveddb()`
+6. Combine several tables into a single flat dataset
+7. Build a daily summary and visualize tree growth patterns
 
 > **Important:**  
 > For CRAN and R CMD check compatibility, all database interactions are  
@@ -35,8 +35,15 @@ This vignette demonstrates how to:
 
 # Install and load required packages
 
-```{r libraries, message=FALSE, eval=FALSE}
+To install the package
+
+```{r}
 devtools::install_github("GauthierLigot/gbxTreeLoadeR")
+```
+
+To load the different packages
+
+```{r libraries, message=FALSE, eval=FALSE}
 library(TreeLoadeR)
 # additionnal packages used in this vignette
 library(tidyverse)
@@ -58,7 +65,7 @@ con <- get_dendropulse()
 ## Import without saving
 
 ```{r import-simple, eval=FALSE}
-db <- get_db()
+db <- get_db(con)
 ```
 
 ## Import and save to disk
@@ -75,7 +82,7 @@ db <- get_db(con, save = TRUE, dir = "c:/temp/exported_db/")
 The directory must only contain the files that are savec with `get_db`. The directory must not contain other files nor other subdirectories.
 
 ```{r load-snapshot, eval=FALSE}
-db <- get_saveddb(dir = "c:/temp/exported_db/")
+db <- get_saveddb(dir = "c:/temp/dendropulse_copies/")
 ```
 
 
