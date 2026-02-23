@@ -22,7 +22,7 @@
 #' }
 #'
 #' @export
-preread_tomst_dendro <- function(nameFile) { ... }
+browse_tomst <- function(nameFile) { ... }
 
 browse_tomst <- function(nameFile){
 
