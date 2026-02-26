@@ -2,12 +2,13 @@
 #'
 #' This function creates a connection to the *dendro_pulse* PostgreSQL database.
 #' By default, it uses the read‑only "pulse" account.
-#' If `admin = TRUE`, the function prompts the user to manually enter a username
-#' and password via the console (safer for admin access).
+#' If `admin = TRUE`, the function gets the username
+#' and password from user environment variables (gbxTreeLoadeR_dendropulse_admin, and
+#' gbxTreeLoadeR_dendropulse_pwd).
 #'
 #' @param admin Logical.
 #'   - `FALSE` (default): Connect using the read‑only credentials.
-#'   - `TRUE`: Prompt interactively for an admin username and password.
+#'   - `TRUE`: connect to the database with administrator rights.
 #'
 #' @return
 #' A `DBIConnection` object if the connection is successful.
@@ -34,8 +35,11 @@ get_dendropulse<-function(admin=F){
   dsn_pwd = "gfpulse"               # Specify your password. e.g. "xxx"
 
   if(admin){
-    dsn_uid <- readline(prompt = "Enter user name (UID): ")
-    dsn_pwd <- readline(prompt = "Enter user password (UID): ")
+    dsn_uid <- Sys.getenv("gbxTreeLoadeR_dendropulse_admin")
+    dsn_pwd <- Sys.getenv("gbxTreeLoadeR_dendropulse_pwd")
+# gl 26-02-2026 use environment variables
+#     dsn_uid <- readline(prompt = "Enter user name (UID): ")
+#     dsn_pwd <- readline(prompt = "Enter user password (UID): ")
   }
 
   ### connect to db
