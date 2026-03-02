@@ -10,7 +10,7 @@ get_dendropulse(admin = F)
 \item{admin}{Logical.
 \itemize{
 \item \code{FALSE} (default): Connect using the read‑only credentials.
-\item \code{TRUE}: Prompt interactively for an admin username and password.
+\item \code{TRUE}: connect to the database with administrator rights.
 }}
 }
 \value{
@@ -20,8 +20,9 @@ Returns \code{NULL} and prints an error message if the connection fails.
 \description{
 This function creates a connection to the \emph{dendro_pulse} PostgreSQL database.
 By default, it uses the read‑only "pulse" account.
-If \code{admin = TRUE}, the function prompts the user to manually enter a username
-and password via the console (safer for admin access).
+If \code{admin = TRUE}, the function gets the username
+and password from user environment variables (gbxTreeLoadeR_dendropulse_admin, and
+gbxTreeLoadeR_dendropulse_pwd).
 }
 \details{
 \itemize{
