@@ -41,7 +41,7 @@ get_table<-function(con, tablename = "tree"){
     return(NA)
   }
 
-  if(tablename == "xy"){
+  if(tablename == "tree"){
     out = sf::st_read(con,query = paste('select * from',tablename))
   }else{
     out = DBI::dbGetQuery(con,paste('select * from',tablename))
